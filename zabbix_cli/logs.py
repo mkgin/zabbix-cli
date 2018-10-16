@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-#
 # Authors:
 # rafael@postgresql.org.es / http://www.postgresql.org.es/
 #
@@ -21,40 +19,40 @@
 # You should have received a copy of the GNU General Public License
 # along with Zabbix-CLI.  If not, see <http://www.gnu.org/licenses/>.
 
-import os
-import sys
-import logging
+from __future__ import print_function
 
-from zabbix_cli.config import *
+import logging
+import sys
+
+from zabbix_cli.config import configuration
+
 
 class log(logging.Logger):
 
     # ############################################
-    # Constructor    
+    # Constructor
     # ############################################
 
-    def __init__(self, logger_name,config_file):
+    def __init__(self, logger_name, config_file):
         """ The Constructor."""
-     
+
         self.logger_name = logger_name
         self.conf = configuration(config_file)
-        
+
         self.logger = logging.getLogger(logger_name)
         level = logging.getLevelName(self.conf.log_level.upper())
-        
+
         self.logger.setLevel(level)
-    
+
         try:
 
             self.fh = logging.FileHandler(self.conf.log_file)
             self.fh.setLevel(level)
-            
+
             self.formatter = logging.Formatter("%(asctime)s [%(name)s][None][%(process)d][%(levelname)s]: %(message)s")
             self.fh.setFormatter(self.formatter)
             self.logger.addHandler(self.fh)
-            
+
         except Exception as e:
-            print "ERROR: Problems with the log configuration needed by Zabbix-CLI: %s" % e
+            print("ERROR: Problems with the log configuration needed by Zabbix-CLI: %s" % e)
             sys.exit(1)
-        
-        

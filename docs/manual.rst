@@ -883,9 +883,9 @@ This command defines a host usermacro.
     
 ::
   
-   defines_host_usermacro [hostname] 
-                          [macro name]
-                          [macro value]
+   define_host_usermacro [hostname] 
+                         [macro name]
+                         [macro value]
 
 Parameters:
 
@@ -907,8 +907,8 @@ of 'Not monitored (off)' will stop all monitoring of the host and a
     
 ::
 
-   defines_host_monitoring_status [hostname] 
-                                  [on/off]
+   define_host_monitoring_status [hostname] 
+                                 [on/off]
 
 Parameteres:
 
